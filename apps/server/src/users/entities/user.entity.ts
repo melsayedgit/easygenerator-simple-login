@@ -10,8 +10,11 @@ export type UserDocument = HydratedDocument<Omit<User, 'profile'>> & {
 export class User {
   @Prop()
   email?: string;
+
+  @Prop({ required: true })
+  password: string;
+
   @Prop({ type: ProfileSchema })
   profile?: Profile;
 }
-
 export const UserSchema = SchemaFactory.createForClass(User);

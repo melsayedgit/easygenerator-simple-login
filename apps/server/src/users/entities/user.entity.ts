@@ -8,8 +8,8 @@ export type UserDocument = HydratedDocument<Omit<User, 'profile'>> & {
 
 @Schema()
 export class User {
-  @Prop()
-  email?: string;
+  @Prop({ required: true })
+  email: string;
 
   @Prop({ required: true })
   password: string;

@@ -15,11 +15,11 @@ export class UsersService {
       UserDocument
     >,
   ) {}
-  async findOne(email: string): Promise<any> {
+  async create(email: string, password: string): Promise<UserDocument> {
     const user = await this.userModel.findOne({ email });
-    if (!user) {
+    if (user) {
       throw new ConflictException(`User with email ${email} already exists`);
     }
-    return user;
+    return this.userModel.create({ email, password });
   }
 }

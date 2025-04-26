@@ -34,7 +34,9 @@ describe('AuthService', () => {
   describe('validateUser', () => {
     let user: UserDocument;
     beforeAll(async () => {
-      user = await usersService.create('test@test.com', 'test');
+      user = await usersService.create('test@test.com', 'test', {
+        name: 'mohamed',
+      });
     });
     it('if correct credentials are provided, it should return the user', async () => {
       console.log(user);

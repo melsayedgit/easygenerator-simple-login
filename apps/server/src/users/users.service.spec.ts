@@ -40,7 +40,7 @@ describe('UsersService', () => {
     await userModel.deleteMany();
   });
 
-  describe('updateOrCreate', () => {
+  describe('Create', () => {
     const newUser = {
       email: 'test@test.com',
       password: 'test',
@@ -59,6 +59,9 @@ describe('UsersService', () => {
           `User with email ${newUser.email} already exists`,
         ),
       );
+    });
+    afterAll(async () => {
+      await userModel.deleteMany();
     });
   });
 });

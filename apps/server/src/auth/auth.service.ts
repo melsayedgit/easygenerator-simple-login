@@ -1,13 +1,19 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { User } from 'src/users/entities/user.entity';
+import { User, UserDocument } from '../users/entities/user.entity';
 
 @Injectable()
 export class AuthService {
   constructor(
     @InjectModel(User.name)
-    private userModel: Model<User>,
+    private readonly userModel: Model<
+      User,
+      Record<string, never>,
+      Record<string, never>,
+      Record<string, never>,
+      UserDocument
+    >,
   ) {}
 
   async validateUser(email: string, password: string): Promise<User | null> {
@@ -15,6 +21,6 @@ export class AuthService {
     if (user && (await user.comparePassword(password))) {
       return user;
     }
-    return null;
+    throw new UnauthorizedException('Invalid email or password');
   }
 }

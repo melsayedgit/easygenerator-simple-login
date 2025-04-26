@@ -4,10 +4,12 @@ import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { MongooseModule } from '@nestjs/mongoose';
+import { configDotenv } from 'dotenv';
 
+configDotenv();
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost:27017/easy-generator'),
+    MongooseModule.forRoot(process.env.MONGO_URL),
     UsersModule,
     AuthModule,
   ],

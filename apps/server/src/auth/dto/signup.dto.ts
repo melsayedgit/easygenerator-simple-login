@@ -1,4 +1,5 @@
-import { IsString, Length, Matches, IsEmail } from 'class-validator';
+import { IsString, Length, Matches, IsEmail, IsObject } from 'class-validator';
+import { ProfileDTO } from './profile.dto';
 
 export class SignupDTO {
   @IsString()
@@ -16,8 +17,11 @@ export class SignupDTO {
   @Matches(/(?=.*[0-9])/, {
     message: 'Password must contain at least one number.',
   })
-  @Matches(/(?=.*[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>/?])/, {
+  @Matches(/(?=.*[ `!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?])/, {
     message: 'Password must contain at least one special character.',
   })
   password: string;
+
+  @IsObject()
+  profile?: ProfileDTO;
 }

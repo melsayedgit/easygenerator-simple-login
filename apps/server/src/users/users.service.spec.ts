@@ -30,30 +30,31 @@ describe('UsersService', () => {
 
     service = module.get<UsersService>(UsersService);
     userModel = module.get(getModelToken(User.name));
+    await userModel.deleteMany();
   });
   beforeEach(async () => {});
 
   it('should be defined', () => {
     expect(service).toBeDefined();
   });
-  afterAll(async () => {
-    await userModel.deleteMany();
-  });
 
   describe('Create', () => {
     const newUser = {
       email: 'test@test.com',
       password: 'test',
+      profile: {
+        name: 'mohamed',
+      },
     };
     it("creates user if it doesn't exist ", async () => {
-      await service.create(newUser.email, newUser.password);
+      await service.create(newUser.email, newUser.password, newUser.profile);
       expect(
         await userModel.find({ email: 'test@test.com' }).countDocuments(),
       ).toBe(1);
     });
     it('only one user per email should exist ', async () => {
       await expect(
-        service.create(newUser.email, newUser.password),
+        service.create(newUser.email, newUser.password, newUser.profile),
       ).rejects.toThrow(
         new ConflictException(
           `User with email ${newUser.email} already exists`,

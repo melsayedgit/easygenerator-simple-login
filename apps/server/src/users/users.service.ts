@@ -27,4 +27,11 @@ export class UsersService {
     }
     return this.userModel.create({ email, password, profile });
   }
+  async getUser(id: string): Promise<UserDocument> {
+    const user = await this.userModel.findById(id, { password: 0 });
+    if (!user) {
+      throw new ConflictException(`User with ID ${id} not found`);
+    }
+    return user;
+  }
 }

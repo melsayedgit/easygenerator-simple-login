@@ -2,8 +2,10 @@ import { useState, FC, useEffect, useContext } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { TextField, Button, Typography } from "@mui/material";
+import { TextField, Button, Typography, Link } from "@mui/material";
 import { AuthContext } from "../context/AuthContext";
+import { AxiosError } from "axios";
+import { useNavigate } from "react-router-dom";
 
 const signInSchema = z.object({
   email: z.string().email("Invalid email address"),
@@ -14,6 +16,7 @@ type SignInFormData = z.infer<typeof signInSchema>;
 
 const SignIn: FC = () => {
   const { signIn } = useContext(AuthContext);
+  const navigate = useNavigate();
   useEffect(() => {
     const originalTitle = document.title;
     document.title = `${originalTitle} - Sign In`;
@@ -36,8 +39,19 @@ const SignIn: FC = () => {
     try {
       await signIn(data.email, data.password);
     } catch (error) {
+      console.log(error);
       if (error instanceof Error) {
         setSignInError(error.message);
+      }
+      if (error instanceof AxiosError) {
+        switch (error.status) {
+          case 401:
+            setSignInError("Invalid email or password");
+            break;
+          default:
+            setSignInError("Invalid email or password");
+            break;
+        }
       }
     }
   };
@@ -84,7 +98,11 @@ const SignIn: FC = () => {
             )}
           />
           {signInError && (
-            <Typography color="error" variant="body2">
+            <Typography
+              sx={{ marginBottom: "10px" }}
+              color="error"
+              variant="body2"
+            >
               {signInError}
             </Typography>
           )}
@@ -103,6 +121,16 @@ const SignIn: FC = () => {
             Sign In
           </Button>
         </form>
+        <Typography sx={{ margin: "5px" }} color="info" variant="body1">
+          Don't have an account?
+        </Typography>
+        <Link
+          component="button"
+          onClick={() => navigate("/signup")}
+          underline="hover"
+        >
+          Click here to sign up!
+        </Link>
       </div>
     </div>
   );

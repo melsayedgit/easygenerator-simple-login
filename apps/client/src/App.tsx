@@ -8,12 +8,14 @@ import {
   Navigate,
 } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext"; // adjust the path
+import SignUp from "./pages/Signup";
 
 const App: FC = () => (
   <AuthProvider>
     <Router>
       <Routes>
         <Route path="/signIn" element={<SignIn />} />
+        <Route path="/signup" element={<SignUp />} />
         {/* <Route
           path="/welcome"
           element={true ? <WelcomePage /> : <Navigate to="/login" />}

@@ -5,6 +5,7 @@ import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { configDotenv } from 'dotenv';
+import { LoggerService } from './logger/logger.service';
 
 configDotenv();
 @Module({
@@ -14,6 +15,6 @@ configDotenv();
     AuthModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, LoggerService],
 })
 export class AppModule {}

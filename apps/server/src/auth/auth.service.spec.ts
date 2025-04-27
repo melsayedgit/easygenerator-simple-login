@@ -38,9 +38,7 @@ describe('AuthService', () => {
         name: 'mohamed',
       });
     });
-    it('if correct credentials are provided, it should return the user', async () => {
-      console.log(user);
-
+    it('if correct credentials are provided, it should return acesstoken', async () => {
       expect(await service.validateUser('test@test.com', 'test')).toMatchObject(
         {
           email: user.email,

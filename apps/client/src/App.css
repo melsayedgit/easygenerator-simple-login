@@ -6,6 +6,11 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --font-color: #ffffff;
+    --background-color: rgba(0, 0, 0, 0.327);
+  }
+
+  .MuiOutlinedInput-notchedOutline {
+    border-color: rgba(244, 244, 244, 0.253) !important;
   }
 }
 
@@ -28,7 +33,7 @@
 
 .form-card {
   padding: 2rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.276);
   border-radius: 40px;
   width: 300px;
   display: flex;

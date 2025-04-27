@@ -38,6 +38,7 @@ const SignIn: FC = () => {
   const onSubmit = async (data: SignInFormData) => {
     try {
       await signIn(data.email, data.password);
+      navigate("/welcome");
     } catch (error) {
       console.log(error);
       if (error instanceof Error) {

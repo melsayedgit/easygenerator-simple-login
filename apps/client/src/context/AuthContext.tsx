@@ -1,6 +1,5 @@
 import { createContext, useState, ReactNode, FC } from "react";
-import axios from "axios";
-
+import axios from "../lib/axios"; // Adjust the import path as necessary
 interface AuthContextType {
   user: string | null;
   token: string | null;
@@ -35,7 +34,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
       localStorage.setItem("token", token);
       localStorage.setItem("user", user);
     } catch (error) {
-      throw new Error("Invalid email or password.");
+      throw new Error(`Invalid email or password. ${error}`);
     }
   };
 

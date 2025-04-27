@@ -6,6 +6,8 @@ import { AuthModule } from './auth/auth.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { configDotenv } from 'dotenv';
 import { LoggerService } from './logger/logger.service';
+import { LoggerModule } from './logger/logger.module';
+import { JwtModule } from '@nestjs/jwt';
 
 configDotenv();
 @Module({
@@ -13,6 +15,11 @@ configDotenv();
     MongooseModule.forRoot(process.env.MONGO_URL),
     UsersModule,
     AuthModule,
+    LoggerModule,
+    JwtModule.register({
+      secret: process.env.JWT_SECRET,
+      signOptions: { expiresIn: '15m' },
+    }),
   ],
   controllers: [AppController],
   providers: [AppService, LoggerService],

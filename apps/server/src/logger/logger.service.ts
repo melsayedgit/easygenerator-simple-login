@@ -3,7 +3,7 @@ import pino, { Logger } from 'pino';
 import * as PinoPretty from 'pino-pretty';
 
 @Injectable()
-export class PinoLoggerService {
+export class LoggerService {
   private logger: Logger;
 
   constructor() {

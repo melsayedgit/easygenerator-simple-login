@@ -7,17 +7,21 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
+import { AuthProvider } from "./context/AuthContext"; // adjust the path
+
 const App: FC = () => (
-  <Router>
-    <Routes>
-      <Route path="/login" element={<SignIn />} />
-      {/* <Route
+  <AuthProvider>
+    <Router>
+      <Routes>
+        <Route path="/signIn" element={<SignIn />} />
+        {/* <Route
           path="/welcome"
           element={true ? <WelcomePage /> : <Navigate to="/login" />}
         /> */}
-      <Route path="/" element={<Navigate to="/welcome" />} />{" "}
-    </Routes>
-  </Router>
+        <Route path="/" element={<Navigate to="/welcome" />} />{" "}
+      </Routes>
+    </Router>
+  </AuthProvider>
 );
 
 export default App;

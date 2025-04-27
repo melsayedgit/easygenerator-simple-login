@@ -12,6 +12,16 @@
   .MuiOutlinedInput-notchedOutline {
     border-color: rgba(244, 244, 244, 0.253) !important;
   }
+
+  .MuiFormLabel-root {
+    color: rgba(244, 244, 244, 0.253) !important;
+  }
+
+  .Mui-focused {
+    color: #1976d2 !important;
+  }
+
+
 }
 
 #root {

@@ -1,29 +1,31 @@
-import { FC } from "react";
-import SignIn from "./pages/Signin";
-import "./App.css";
+import { FC, useContext } from "react";
 import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
   Navigate,
+  Route,
+  BrowserRouter as Router,
+  Routes,
 } from "react-router-dom";
-import { AuthProvider } from "./context/AuthContext"; // adjust the path
+import "./App.css";
+import SignIn from "./pages/Signin";
 import SignUp from "./pages/Signup";
+import Welcome from "./pages/Welcome";
+import { AuthContext } from "./context/AuthContext";
 
-const App: FC = () => (
-  <AuthProvider>
+const App: FC = () => {
+  const { token } = useContext(AuthContext);
+  return (
     <Router>
       <Routes>
         <Route path="/signIn" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
-        {/* <Route
+        <Route
           path="/welcome"
-          element={true ? <WelcomePage /> : <Navigate to="/login" />}
-        /> */}
+          element={token ? <Welcome /> : <Navigate to="/signIn" />}
+        />
         <Route path="/" element={<Navigate to="/welcome" />} />{" "}
       </Routes>
     </Router>
-  </AuthProvider>
-);
+  );
+};
 
 export default App;

@@ -24,10 +24,9 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
       email,
       password,
     });
-    const { token } = response.data;
-    console.log("Token received:", token);
 
-    setToken(token);
+    const { accessToken } = response.data;
+    setToken(accessToken);
   };
 
   const signOut = () => {

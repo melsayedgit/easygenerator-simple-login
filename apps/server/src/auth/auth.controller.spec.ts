@@ -7,6 +7,7 @@ import { AuthService } from './auth.service';
 import { getModelToken, MongooseModule } from '@nestjs/mongoose';
 import { User, UserDocument, UserSchema } from '../users/entities/user.entity';
 import { Model } from 'mongoose';
+import { JwtService } from '@nestjs/jwt';
 
 describe('AuthController', () => {
   let app: INestApplication;
@@ -33,7 +34,7 @@ describe('AuthController', () => {
         MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
       ],
       controllers: [AuthController],
-      providers: [UsersService, AuthService],
+      providers: [UsersService, AuthService, JwtService],
     }).compile();
 
     app = module.createNestApplication();

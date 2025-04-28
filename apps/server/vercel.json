@@ -1,10 +1,6 @@
 {
   "version": 2,
-  "env": {
-    "MONGO_URL": "@MONGO_URL",
-    "JWT_SECRET": "@JWT_SECRET,",
-    "JWT_REFRESH_SECRET": "@JWT_REFRESH_SECRET"
-  },
+
   "builds": [
     {
       "src": "dist/main.js",

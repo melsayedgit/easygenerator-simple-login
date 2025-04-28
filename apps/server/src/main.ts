@@ -16,10 +16,7 @@ async function bootstrap() {
     }),
   );
   app.setGlobalPrefix('api');
-  app.enableCors({
-    origin: 'http://localhost:5173',
-    credentials: true,
-  });
+  app.enableCors();
 
   app.use(cookieParser());
 

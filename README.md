@@ -18,7 +18,7 @@ A production-ready user authentication module built with React (TypeScript) and 
 - **Security**: Bcrypt for password hashing, JWT and Refresh token passport, rate limiting.
 - **Error Handling**: Consistent error responses.
 - **Testing**: Jest.
-- **CI/CD**: Vercal,github Actions.
+- **CI/CD**: Vercal.
 
 ## Tech Stack
 

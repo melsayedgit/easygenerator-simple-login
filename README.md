@@ -25,4 +25,8 @@ A production-ready user authentication module built with React (TypeScript) and 
 - **Frontend**: React, TypeScript, MUI, axios,ZOD.
 - **Backend**: NestJS, MongoDB, Passport.
 
-Access the app at `http://localhost:3000` after setup.
+```bash
+pnpm install
+pnpm dev
+```
+Access the app at http://localhost:5173 after setup [dev mode].

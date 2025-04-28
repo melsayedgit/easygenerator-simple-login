@@ -3,8 +3,9 @@ import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import { configDotenv } from 'dotenv';
 import * as cookieParser from 'cookie-parser';
-
-configDotenv();
+if (process.env.RAILWAY_ENVIRONMENT_NAME !== 'production') {
+  configDotenv();
+}
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalPipes(

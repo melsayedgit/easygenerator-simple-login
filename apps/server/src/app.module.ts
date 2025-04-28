@@ -9,7 +9,9 @@ import { LoggerService } from './logger/logger.service';
 import { LoggerModule } from './logger/logger.module';
 import { JwtModule } from '@nestjs/jwt';
 
-configDotenv();
+if (process.env.RAILWAY_ENVIRONMENT_NAME !== 'production') {
+  configDotenv();
+}
 @Module({
   imports: [
     MongooseModule.forRoot(process.env.MONGO_URL),

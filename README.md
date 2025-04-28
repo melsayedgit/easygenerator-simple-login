@@ -31,9 +31,14 @@ pnpm dev
 ```
 Access the app at http://localhost:5173 after setup [dev mode].
 
-.env
+.env server
 ```.env
 MONGO_URL=mongodb://localhost:27017/easy-generator
 JWT_SECRET=your_jwt_secret
 JWT_REFRESH_SECRET=your_jwt_refresh_secretv
 ```
+.env client
+```.env
+VITE_API_URL=http://localhost:3000/api
+```
+

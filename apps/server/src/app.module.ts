@@ -8,6 +8,7 @@ import { configDotenv } from 'dotenv';
 import { LoggerService } from './logger/logger.service';
 import { LoggerModule } from './logger/logger.module';
 import { JwtModule } from '@nestjs/jwt';
+import { ThrottlerModule } from '@nestjs/throttler';
 
 if (process.env.RAILWAY_ENVIRONMENT_NAME !== 'production') {
   configDotenv();
@@ -21,6 +22,14 @@ if (process.env.RAILWAY_ENVIRONMENT_NAME !== 'production') {
     JwtModule.register({
       secret: process.env.JWT_SECRET,
       signOptions: { expiresIn: '15m' },
+    }),
+    ThrottlerModule.forRoot({
+      throttlers: [
+        {
+          ttl: 60000,
+          limit: 10,
+        },
+      ],
     }),
   ],
   controllers: [AppController],

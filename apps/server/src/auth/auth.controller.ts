@@ -5,6 +5,7 @@ import { UsersService } from '../users/users.service';
 import { Profile } from 'src/users/entities/profile.entity';
 import { AuthService } from './auth.service';
 import { Response } from 'express';
+import { Throttle } from '@nestjs/throttler';
 
 @Controller('auth')
 export class AuthController {
@@ -22,6 +23,12 @@ export class AuthController {
     );
   }
 
+  @Throttle({
+    default: {
+      limit: 3,
+      ttl: 60000,
+    },
+  })
   @Post('signin')
   async signin(
     @Body() sigingDTO: SigninDTO,

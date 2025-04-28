@@ -3,7 +3,7 @@ import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import { configDotenv } from 'dotenv';
 import * as cookieParser from 'cookie-parser';
-if (process.env.RAILWAY_ENVIRONMENT_NAME !== 'production') {
+if (process.env.NODE_ENV !== 'production') {
   configDotenv();
 }
 async function bootstrap() {
@@ -16,7 +16,10 @@ async function bootstrap() {
     }),
   );
   app.setGlobalPrefix('api');
-  app.enableCors();
+  app.enableCors({
+    origin: ['http://localhost:5173', 'http://localhost:4173'],
+    credentials: true,
+  });
 
   app.use(cookieParser());
 
